@@ -258,4 +258,12 @@ public class MySearchView extends View {
         void onClick();
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if(null != mAnimator){
+            mAnimator.removeAllUpdateListeners();
+            mAnimator = null;
+        }
+    }
 }
