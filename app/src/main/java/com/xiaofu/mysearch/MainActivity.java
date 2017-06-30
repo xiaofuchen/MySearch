@@ -9,6 +9,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private MyScrollView scrollview;
     private MySearchView search;
+    private MySearchView2 search2;
     private ImageButton iv_search;
     private boolean isAnmotioning = false;//是否在动画中
 
@@ -23,13 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         scrollview = (MyScrollView) findViewById(R.id.scrollview);
         search = (MySearchView) findViewById(R.id.search);
+        search2 = (MySearchView2) findViewById(R.id.search2);
         iv_search = (ImageButton) findViewById(R.id.iv_search);
+
+        search2.setMarginTopFixed(Utils.dp2px(this,450));
     }
 
     private void setListener() {
         scrollview.setOnScrollListener(new MyScrollView.OnScrollListener() {
             @Override
             public void onScroll(int scrollY, int oritention) {
+                search2.setSrcollValue(scrollY);
                 if (scrollY >= Utils.dp2px(MainActivity.this.getApplicationContext(), 200) && View.GONE == iv_search.getVisibility() && MyScrollView.SCROLL_UP == oritention && !isAnmotioning) {
                     search.setIsOpen(false);
                 }
@@ -69,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "点击", Toast.LENGTH_SHORT).show();
+            }
+        });
+        search2.setOnSearchClickListener(new MySearchView2.OnSearchClickListener() {
+            @Override
+            public void onSearchClick() {
                 Toast.makeText(getApplicationContext(), "点击", Toast.LENGTH_SHORT).show();
             }
         });

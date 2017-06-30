@@ -34,7 +34,7 @@ public class MySearchView extends View {
 
     private final static int MIN_ALPHA = 0;
     private final static int MAX_ALPHA = 200;
-    private final static long ANIMATORE_TIME = 300L;
+    protected final static long ANIMATORE_TIME = 300L;
     private final static String TEXT = "搜索更多";
     private final static int TEXT_SIZE = 22;
     private final static int TEXT_COLOR = Color.WHITE;
@@ -232,6 +232,10 @@ public class MySearchView extends View {
         if (null != mAnimator) {
             mAnimator.start();
         }
+    }
+
+    public boolean isOpen(){
+        return this.isOpen;
     }
 
     private OnAnimatorStateListener mOnAnimatorStateListener;
